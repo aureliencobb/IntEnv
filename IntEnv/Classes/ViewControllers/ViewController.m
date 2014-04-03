@@ -10,12 +10,14 @@
 #import "TwitterStreamConnection.h"
 #import "TweetStreamScrollView.h"
 
-@interface ViewController () <TwitterStreamConnectionDelegate>
+NSString * const kSearchWord = @"banking";
+
+@interface ViewController () <TwitterStreamConnectionDelegate, UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet TweetStreamScrollView *twitterStreamScrollView;
 @property (strong, nonatomic) TwitterStreamConnection * twitterConnection;
-/** NSArray for the table data source. Holds objects of type `IETweet` */
-@property (copy, nonatomic) NSMutableArray * tweets;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (weak, nonatomic) IBOutlet UILabel *labelConnectionStatus;
 
 @end
 
@@ -23,7 +25,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.twitterConnection = [TwitterStreamConnection streamTweetsWithKeyword:@"banking" delegate:self];
+    self.title = [@"10 latest tweets for " stringByAppendingString:kSearchWord];
+    self.twitterStreamScrollView.scrollIndicatorInsets = self.twitterStreamScrollView.contentInset;
+    [self launchTwitterConnection];
+}
+
+- (void)launchTwitterConnection {
+    [self.activityIndicator startAnimating];
+    self.labelConnectionStatus.hidden = NO;
+    self.twitterConnection = [TwitterStreamConnection streamTweetsWithKeyword:kSearchWord delegate:self];
 }
 
 - (void)closeTwitterConnection {
@@ -33,8 +43,31 @@
 #pragma mark - TwitterStreamConnectionDelegate methods
 
 - (void)twitterStreamConnection:(TwitterStreamConnection *)connection respondsWithTweets:(NSArray *)tweets {
+    [self.activityIndicator removeFromSuperview];
+    [self.labelConnectionStatus removeFromSuperview];
     for (id tweet in tweets) {
         [self.twitterStreamScrollView addTweet:tweet];
+    }
+}
+
+- (void)twitterStreamConnection:(TwitterStreamConnection *)connection didFailWithError:(NSError *)error {
+    [self.activityIndicator stopAnimating];
+    self.labelConnectionStatus.hidden = NO;
+    UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:error.localizedDescription delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Retry", nil];
+    [alertView show];
+}
+
+#pragma mark - UIAlertViewDelegate methods
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    switch (buttonIndex) {
+        case 0:
+            exit(1);
+            break;
+        case 1:
+            [self launchTwitterConnection];
+        default:
+            break;
     }
 }
 

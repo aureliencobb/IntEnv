@@ -9,6 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "Mantle.h"
 
+/** 
+ *  The Model, subclass of MTLModel to get the mapping, hashing, json serialization and desctiption for free.
+ */
+
 @interface IETweet : MTLModel <MTLJSONSerializing>
 
 @property (copy, nonatomic) NSString * text;

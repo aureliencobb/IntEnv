@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+/** 
+ *  The main view controller
+ */
+
 @interface ViewController : UIViewController
 
 @end

@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ *  Resize a multiline UILabel 
+ */
+
 @interface UILabel (ResizeHeight)
 
 - (void)resizeToFitContents;

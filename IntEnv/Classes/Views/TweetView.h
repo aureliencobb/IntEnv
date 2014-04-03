@@ -10,8 +10,13 @@
 
 @class IETweet;
 
+/**
+ *  The tweet view that displays some of the tweet information.
+ */
+
 @interface TweetView : UIView
 
+/** Creates the TweetView with the given IETweet object */
 + (TweetView *)tweetViewWithIETweet:(IETweet *)tweet;
 
 @end

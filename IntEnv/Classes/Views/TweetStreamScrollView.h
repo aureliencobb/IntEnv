@@ -10,6 +10,11 @@
 
 @class IETweet;
 
+/** 
+ * A scrollview holding TweetView in a vertical arrangement, showing the newest at the top.
+ * 
+ */
+
 @interface TweetStreamScrollView : UIScrollView
 
 /** A method to add a IETweet object. If the number of objects exceeds maxItems, the oldest object is removed */

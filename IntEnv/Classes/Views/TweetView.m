@@ -22,20 +22,23 @@ const CGFloat kMinimumBottomMargin = 6.0;
 @property (weak, nonatomic) IBOutlet UILabel *labelUserName;
 @property (weak, nonatomic) IBOutlet UILabel *labelTwitter;
 @property (weak, nonatomic) IBOutlet UILabel *labelText;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contraintTextLabelHeight;
 
 @end
 
 @implementation TweetView
 
 + (TweetView *)tweetViewWithIETweet:(IETweet *)tweet {
+    // instead of using [NSBundle mainBundle] we use bundleForClass to let the unit test target create one of those TweetView objects by calling this class method
     TweetView * tweetView = [[[NSBundle bundleForClass:[TweetView class]] loadNibNamed:@"TweetView" owner:self options:nil] lastObject];
     [tweetView configureViewWithTweet:tweet];
     return tweetView;
 }
 
-- (void)updateConstraints {
-    [super updateConstraints];
-    [self.backGroundView drawRoundedRectWithCornerRadius:kCornerRadius shadowColor:[UIColor blackColor] shadowOffset:CGSizeMake(0, 1) shadowRadius:1];
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    // once the view is resized, we draw the rounded corners and shadowpath
+    [self.backGroundView drawRoundedRectWithCornerRadius:kCornerRadius shadowColor:[UIColor grayColor] shadowOffset:CGSizeMake(0, 0.5) shadowRadius:1.0];
 }
 
 - (void)configureViewWithTweet:(IETweet *)tweet {
@@ -44,10 +47,11 @@ const CGFloat kMinimumBottomMargin = 6.0;
     self.labelText.text = tweet.text;
     [self loadImageAsyncFromURL:[NSURL URLWithString:tweet.profileImageURL]];
     [self.labelText resizeToFitContents];
-    self.labelText.height = self.labelText.height;
+    self.contraintTextLabelHeight.constant = self.labelText.height;
     self.height = MAX(self.height, CGRectGetMaxY(self.labelText.frame) + kMinimumBottomMargin);
 }
 
+// the image is loaded asynchronously. It would be better to let the controller handle this, as views shouldn't lauch requests
 - (void)loadImageAsyncFromURL:(NSURL *)url {
     if (url == nil) {
         return;

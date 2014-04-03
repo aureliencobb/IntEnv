@@ -68,6 +68,8 @@
     NSArray * tweets = [dataString componentsSeparatedByString:@"\n"];
     NSError * error;
     NSMutableArray * tweetObjects = [[NSMutableArray alloc] initWithCapacity:[tweets count]];
+    
+    // several tweets can come, separated by 0x0a0d (new line), so we split those
     for (NSString * tweetJSONString in tweets) {
         error = nil;
         if (tweetJSONString.length > 1) {
@@ -81,17 +83,23 @@
             
             if (error) {
                 // break out and notify delegate
-                NSLog(@"Error parsing JSON: %@", error.localizedDescription);
+                NSLog(@"Error mapping JSON: %@", error.localizedDescription);
                 break;
             }
+            
+            // the validate method makes sure that everything was mapped, so an empty string would not be valid
             if ([tweetObject validate:&error]) {
                 [tweetObjects addObject:tweetObject];
             }
         }
     }
-    if ([self.delegate respondsToSelector:@selector(twitterStreamConnection:respondsWithTweets:)]) {
+    if ([tweetObjects count]) {
         [self.delegate twitterStreamConnection:self respondsWithTweets:[tweetObjects copy]];
     }
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    [self.delegate twitterStreamConnection:self didFailWithError:error];
 }
 
 - (void)closeConnection {

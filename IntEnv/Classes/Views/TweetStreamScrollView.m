@@ -12,6 +12,7 @@
 #import "UIView+Geometry.h"
 
 const NSUInteger kDefaultNumberOfTweetViews = 10;
+const CGFloat kDefaultNewTweetAnimationDutation = 0.2;
 
 @interface TweetStreamScrollView()
 
@@ -49,27 +50,42 @@ const NSUInteger kDefaultNumberOfTweetViews = 10;
     return [TweetView tweetViewWithIETweet:tweet];
 }
 
+// we add a tweet to a dequeue, making sure that no more than the maximum number is exceeded.
+// latest tweets are added at the top
 - (void)addTweet:(IETweet *)tweet {
     if (![tweet isKindOfClass:[IETweet class]]) {
         return;
     }
+    
+    // the tweet need to be invisible for now. it only becomes visible when all other tweets have moved down.
     TweetView * tweetView = [self tweetViewWithIETweet:tweet];
+    tweetView.x = (self.width - tweetView.width) / 2;
+    tweetView.alpha = 0.0;
     
     [self.tweetViews insertObject:tweetView atIndex:0];
+    
+    // lets remove old tweets
     if ([self.tweetViews count] > self.maxItems) {
-        [self.tweetViews removeLastObject];
+        TweetView * lastTweetView = [self.tweetViews lastObject];
+        [lastTweetView removeFromSuperview];
+        [self.tweetViews removeObject:lastTweetView];
     }
-    [self moveOlderTweetsDown];
-    [self addSubview:tweetView];
+    [self moveOlderTweetsDownForNewTweet:tweetView];
 }
 
-- (void)moveOlderTweetsDown {
+- (void)moveOlderTweetsDownForNewTweet:(TweetView *)tweetView {
     __block CGFloat yPos = 0.0;
-    [UIView animateWithDuration:0.3 animations:^{
+    [UIView animateWithDuration:kDefaultNewTweetAnimationDutation animations:^{
         for (TweetView * tweetView in self.tweetViews) {
             tweetView.y = yPos;
             yPos += tweetView.height;
         }
+    } completion:^(BOOL finished) {
+        [self addSubview:tweetView];
+        [UIView animateWithDuration:kDefaultNewTweetAnimationDutation animations:^{
+            tweetView.alpha = 1.0;
+        }];
+
     }];
     self.contentSize = CGSizeMake(self.width, yPos);
 }

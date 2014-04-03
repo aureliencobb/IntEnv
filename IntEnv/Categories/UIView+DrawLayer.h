@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ *  Draw rounded corners and a shadow on the UIVIew 
+ */
+
 @interface UIView (DrawLayer)
 
 - (void)drawRoundedRectWithCornerRadius:(CGFloat)cornerRadius shadowColor:(UIColor *)shadowColor shadowOffset:(CGSize)offset shadowRadius:(CGFloat)shadowRadius;
