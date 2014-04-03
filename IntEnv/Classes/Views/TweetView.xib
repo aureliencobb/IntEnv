@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5053" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TweetView">
+            <rect key="frame" x="0.0" y="0.0" width="310" height="87"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LVs-mf-feN" userLabel="backgroundView">
+                    <rect key="frame" x="1" y="1" width="308" height="83"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="khD-Ri-EPO">
+                            <rect key="frame" x="247" y="12" width="60" height="60"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="60" id="IRY-I6-QMy"/>
+                                <constraint firstAttribute="height" constant="60" id="dbp-vN-06C"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="User" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a2S-Zb-8um">
+                            <rect key="frame" x="16" y="12" width="90" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="twitter" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y29-r1-JTf">
+                            <rect key="frame" x="118" y="12" width="121" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="text" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pOY-tt-53X">
+                            <rect key="frame" x="16" y="32" width="219" height="17"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="centerY" secondItem="khD-Ri-EPO" secondAttribute="centerY" id="aA0-uv-sNZ"/>
+                        <constraint firstAttribute="trailing" secondItem="khD-Ri-EPO" secondAttribute="trailing" constant="1" id="vfE-L9-0Pv"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="LVs-mf-feN" secondAttribute="bottom" constant="3" id="GKO-dL-lOb"/>
+                <constraint firstItem="LVs-mf-feN" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="1" id="VVo-lr-lL1"/>
+                <constraint firstItem="LVs-mf-feN" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="1" id="bzd-QA-S11"/>
+                <constraint firstAttribute="trailing" secondItem="LVs-mf-feN" secondAttribute="trailing" constant="1" id="h69-CT-UqB"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="backGroundView" destination="LVs-mf-feN" id="dk4-IA-KTK"/>
+                <outlet property="labelText" destination="pOY-tt-53X" id="oap-i6-5DE"/>
+                <outlet property="labelTwitter" destination="Y29-r1-JTf" id="YmZ-GD-vzW"/>
+                <outlet property="labelUserName" destination="a2S-Zb-8um" id="XVB-8E-mcq"/>
+                <outlet property="userImage" destination="khD-Ri-EPO" id="DxI-Pn-k82"/>
+            </connections>
+        </view>
+    </objects>
+</document>
