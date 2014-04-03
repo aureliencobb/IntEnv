@@ -17,7 +17,8 @@
     layer.shadowOffset = offset;
     layer.shadowRadius = shadowRadius;
     layer.shadowOpacity = 1.0;
-    UIBezierPath * path = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:cornerRadius];
+    CGRect shadowFrame = CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
+    UIBezierPath * path = [UIBezierPath bezierPathWithRoundedRect:shadowFrame cornerRadius:cornerRadius];
     [layer setShadowPath:path.CGPath];
 }
 

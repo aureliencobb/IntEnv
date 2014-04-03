@@ -33,14 +33,19 @@ const CGFloat kMinimumBottomMargin = 6.0;
     return tweetView;
 }
 
+- (void)updateConstraints {
+    [super updateConstraints];
+    [self.backGroundView drawRoundedRectWithCornerRadius:kCornerRadius shadowColor:[UIColor blackColor] shadowOffset:CGSizeMake(0, 1) shadowRadius:1];
+}
+
 - (void)configureViewWithTweet:(IETweet *)tweet {
     self.labelUserName.text = tweet.userName;
-    self.labelTwitter.text = tweet.screenName;
+    self.labelTwitter.text = [@"@" stringByAppendingString:tweet.screenName];
     self.labelText.text = tweet.text;
     [self loadImageAsyncFromURL:[NSURL URLWithString:tweet.profileImageURL]];
     [self.labelText resizeToFitContents];
+    self.labelText.height = self.labelText.height;
     self.height = MAX(self.height, CGRectGetMaxY(self.labelText.frame) + kMinimumBottomMargin);
-    [self.backGroundView drawRoundedRectWithCornerRadius:kCornerRadius shadowColor:[UIColor blackColor] shadowOffset:CGSizeMake(0, 1) shadowRadius:1];
 }
 
 - (void)loadImageAsyncFromURL:(NSURL *)url {

@@ -9,6 +9,7 @@
 #import "TweetStreamScrollView.h"
 #import "IETweet.h"
 #import "TweetView.h"
+#import "UIView+Geometry.h"
 
 const NSUInteger kDefaultNumberOfTweetViews = 10;
 
@@ -58,7 +59,19 @@ const NSUInteger kDefaultNumberOfTweetViews = 10;
     if ([self.tweetViews count] > self.maxItems) {
         [self.tweetViews removeLastObject];
     }
+    [self moveOlderTweetsDown];
+    [self addSubview:tweetView];
 }
 
+- (void)moveOlderTweetsDown {
+    __block CGFloat yPos = 0.0;
+    [UIView animateWithDuration:0.3 animations:^{
+        for (TweetView * tweetView in self.tweetViews) {
+            tweetView.y = yPos;
+            yPos += tweetView.height;
+        }
+    }];
+    self.contentSize = CGSizeMake(self.width, yPos);
+}
 
 @end

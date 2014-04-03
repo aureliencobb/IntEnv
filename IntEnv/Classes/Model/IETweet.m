@@ -14,19 +14,11 @@
     return @{@"text" : @"text",
              @"userName" : @"user.name",
              @"screenName" : @"user.screen_name",
-             @"profileImage" : @"user.profile_background_image_url"};
+             @"profileImageURL" : @"user.profile_background_image_url"};
 }
 
-- (NSString *)description {
-    return [NSString stringWithFormat:@"{"
-            "\rtext: %@"
-            "\ruserName: %@"
-            "\rscreenName: %@"
-            "\rimage URL: %@",
-            self.text,
-            self.userName,
-            self.screenName,
-            self.profileImageURL];
+-(BOOL)validateValue:(inout __autoreleasing id *)ioValue forKey:(NSString *)inKey error:(out NSError *__autoreleasing *)outError {
+    return *ioValue != nil;
 }
 
 @end

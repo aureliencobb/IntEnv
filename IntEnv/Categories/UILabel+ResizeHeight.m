@@ -18,7 +18,7 @@
 - (CGRect)boundsThatFitContents {
     self.numberOfLines = 0;
     self.lineBreakMode = NSLineBreakByWordWrapping;
-    
+    self.backgroundColor = [UIColor greenColor];
     NSDictionary *attributes = @{NSFontAttributeName:self.font};
     CGRect bounds = [self.text boundingRectWithSize:CGSizeMake(CGRectGetWidth(self.frame), MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil];
     return bounds;

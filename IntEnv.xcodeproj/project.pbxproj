@@ -23,7 +23,7 @@
 		4A12EFAC18EC15E00000CC2E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A12EF8B18EC15E00000CC2E /* Foundation.framework */; };
 		4A12EFAD18EC15E00000CC2E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A12EF8F18EC15E00000CC2E /* UIKit.framework */; };
 		4A12EFB518EC15E00000CC2E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4A12EFB318EC15E00000CC2E /* InfoPlist.strings */; };
-		4A12EFB718EC15E00000CC2E /* IntEnvTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A12EFB618EC15E00000CC2E /* IntEnvTests.m */; };
+		4A9D8F9418EDB64100744A95 /* TweetModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9D8F9318EDB64100744A95 /* TweetModelTests.m */; };
 		4AB3E24A18EC2F6600AEA1F2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB3E24818EC2F6600AEA1F2 /* ViewController.m */; };
 		4AF5DDBD18ED6B25001152FD /* UILabel+ResizeHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF5DDBC18ED6B25001152FD /* UILabel+ResizeHeight.m */; };
 		4AF5DDC618ED810B001152FD /* TweetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF5DDC518ED810B001152FD /* TweetView.m */; };
@@ -70,7 +70,7 @@
 		4A12EFAA18EC15E00000CC2E /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		4A12EFB218EC15E00000CC2E /* IntEnvTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "IntEnvTests-Info.plist"; sourceTree = "<group>"; };
 		4A12EFB418EC15E00000CC2E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		4A12EFB618EC15E00000CC2E /* IntEnvTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntEnvTests.m; sourceTree = "<group>"; };
+		4A9D8F9318EDB64100744A95 /* TweetModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetModelTests.m; sourceTree = "<group>"; };
 		4AB3E24718EC2F6600AEA1F2 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		4AB3E24818EC2F6600AEA1F2 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		4AF5DDBB18ED6B25001152FD /* UILabel+ResizeHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+ResizeHeight.h"; sourceTree = "<group>"; };
@@ -193,9 +193,9 @@
 		4A12EFB018EC15E00000CC2E /* IntEnvTests */ = {
 			isa = PBXGroup;
 			children = (
-				4A12EFB618EC15E00000CC2E /* IntEnvTests.m */,
 				4A12EFB118EC15E00000CC2E /* Supporting Files */,
 				4AF5DDD518EDA022001152FD /* TweetStreamScrollViewTests.m */,
+				4A9D8F9318EDB64100744A95 /* TweetModelTests.m */,
 			);
 			path = IntEnvTests;
 			sourceTree = "<group>";
@@ -413,7 +413,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A12EFB718EC15E00000CC2E /* IntEnvTests.m in Sources */,
+				4A9D8F9418EDB64100744A95 /* TweetModelTests.m in Sources */,
 				4AF5DDD618EDA022001152FD /* TweetStreamScrollViewTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

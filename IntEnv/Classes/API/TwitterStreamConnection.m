@@ -72,19 +72,21 @@
         error = nil;
         if (tweetJSONString.length > 1) {
             NSDictionary * jsonDict = [NSJSONSerialization JSONObjectWithData:[tweetJSONString dataUsingEncoding:NSUTF8StringEncoding] options:0 error:&error];
-            NSLog(@"JSONDICT: \n\n%@", jsonDict);
             if (error) {
                 // break out and notify delegate
                 NSLog(@"Error parsing JSON: %@", error.localizedDescription);
                 break;
             }
             IETweet * tweetObject = [MTLJSONAdapter modelOfClass:IETweet.class fromJSONDictionary:jsonDict error:&error];
+            
             if (error) {
                 // break out and notify delegate
                 NSLog(@"Error parsing JSON: %@", error.localizedDescription);
                 break;
             }
-            NSLog(@"Tweet object: %@", tweetObject);
+            if ([tweetObject validate:&error]) {
+                [tweetObjects addObject:tweetObject];
+            }
         }
     }
     if ([self.delegate respondsToSelector:@selector(twitterStreamConnection:respondsWithTweets:)]) {
