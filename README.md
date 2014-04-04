@@ -1,7 +1,17 @@
 IntEnv
 ======
 
-test using the twitter stream api
+Test using the twitter stream api
+
+To get the project, please clone the repo and run 
+
+pod install
+
+to install third part libraries.
+
+This project uses the Mantle framework to map the JSON dictionary to the model object.
+
+------
 
 This is a simple app that uses the Social and Accounts framework to connect to twitter. 
 The app can only be run on a device that has a twitter account set up.
