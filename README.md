@@ -3,11 +3,7 @@ IntEnv
 
 Test using the twitter stream api
 
-To get the project, please clone the repo and run 
-
-pod install
-
-to install third part libraries.
+To get the project, please clone the repo and run **pod install** to install third part libraries.
 
 This project uses the Mantle framework to map the JSON dictionary to the model object.
 
