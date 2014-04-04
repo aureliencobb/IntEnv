@@ -18,6 +18,9 @@
 }
 
 -(BOOL)validateValue:(inout __autoreleasing id *)ioValue forKey:(NSString *)inKey error:(out NSError *__autoreleasing *)outError {
+    if ([inKey isEqualToString:@"profileImageURL"]) {
+        return YES;
+    }
     return *ioValue != nil;
 }
 

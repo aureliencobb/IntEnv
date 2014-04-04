@@ -54,6 +54,10 @@
 
 - (void)testAddingTweetIncrementsByOne {
     IETweet * tweet = [[IETweet alloc] init];
+    tweet.userName = @"adf";
+    tweet.text = @"adfg";
+    tweet.screenName = @"adf";
+
     NSUInteger numberOfTweets = [_tweetScrollView.tweetViews count];
     [_tweetScrollView addTweet:tweet];
     NSUInteger newNumberOfTweets = [_tweetScrollView.tweetViews count];
@@ -63,6 +67,9 @@
 - (void)testThatNoMoreThanMaxNumberOfTweetViewsArePresent {
     for (int i = 0; i <= _tweetScrollView.maxItems; i++) {
         IETweet * tweet = [[IETweet alloc] init];
+        tweet.userName = @"adf";
+        tweet.text = @"adfg";
+        tweet.screenName = @"adf";
         [_tweetScrollView addTweet:tweet];
     }
     XCTAssertEqual(_tweetScrollView.maxItems, [_tweetScrollView.tweetViews count], @"There should be a maximum of %d objects", _tweetScrollView.maxItems);
